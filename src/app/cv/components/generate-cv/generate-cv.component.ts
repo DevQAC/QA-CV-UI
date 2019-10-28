@@ -55,8 +55,7 @@ export class GenerateCvComponent implements OnInit {
     this.cvForm = fb.group({
       firstName: ['', Validators.required],
       surname: ['', Validators.required],
-      userName: ['', Validators.required],
-      profile: fb.group({ profileDetails: ['', Validators.required] }),
+      profile: fb.group({ profileDetails: ['', [Validators.required, Validators.maxLength(1800)]] }),
       skills: fb.group({
         programmingLanguages: [[]],
         ides: [[]],
@@ -66,7 +65,7 @@ export class GenerateCvComponent implements OnInit {
         platforms: [[]],
         other: [[]]
       }),
-      hobbies: fb.group({ hobbiesDetails: ['', Validators.required] }),
+      hobbies: fb.group({ hobbiesDetails: ['', [Validators.required, Validators.maxLength(750)]] }),
       qualifications: [[]],
       workExperience: [[]]
     });
