@@ -91,7 +91,7 @@
         </ng-container>
       
         <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
-        <tr mat-row *matRowDef="let element; columns: displayedColumns; let i = index;" class="selectable"
+        <tr mat-row *matRowDef="let element; columns: columns; let i = index;" class="selectable"
             [class.expanded]="expandedElement === element"
             (click)="expandedElement = expandedElement === element ? null : element">
         </tr>
