@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CvRemoteService } from '../../_common/services/cv-remote.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CvModel } from '../../_common/models/cv.model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import * as _ from 'lodash';
 import { MatChipInputEvent } from '@angular/material';
+import { CvService } from '../../_common/services/cv.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-generate-cv',
@@ -48,7 +49,7 @@ export class GenerateCvComponent implements OnInit {
 
   public cvForm: FormGroup;
 
-  constructor(private cvRemoteService: CvRemoteService) {
+  constructor(private cvService: CvService) {
 
     const fb = new FormBuilder();
 
@@ -73,9 +74,6 @@ export class GenerateCvComponent implements OnInit {
 
   ngOnInit() {
     this.cvForm.patchValue(new CvModel());
-    this.cvForm.valueChanges.subscribe((v) => {
-      console.log(this.cvForm.valid, this.cvForm);
-    })
   }
 
   public removeSkill(category, value): void {
@@ -96,14 +94,18 @@ export class GenerateCvComponent implements OnInit {
 
   onGenerateCvButtonClicked() {
     const { skills, qualifications, workExperience, ...rest } = this.cvForm.value;
-    this.cvRemoteService.getCvPdf(
+
+    this.cvForm.disable();
+    this.cvService.displayCvPdf(
       _.merge(new CvModel(), {
         allSkills: [skills],
         allQualifications: qualifications,
         allWorkExperience: workExperience,
         fullName: `${rest.firstName} ${rest.surname}`,
         ...rest
-      } as CvModel));
+      } as CvModel)).pipe(
+        finalize(() => this.cvForm.enable())
+      ).subscribe(() => {});
   }
 
 }
