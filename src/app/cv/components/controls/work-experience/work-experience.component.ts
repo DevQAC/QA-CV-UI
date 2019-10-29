@@ -38,21 +38,17 @@ export class WorkExperienceComponent implements ControlValueAccessor {
   }
 
   onNewWorkExperienceClick(): void {
-    const lastExp = this.workExperienceTableDataSource.data[this.workExperienceTableDataSource.data.length - 1];
-
-    if (!lastExp || lastExp.jobTitle || lastExp.end || lastExp.start || lastExp.workExperienceDetails) {
-      const newExperience = {
-        jobTitle: '',
-        start: null,
-        end: null,
-        workExperienceDetails: '',
-        workExperienceFeedback: []
-      };
-      this.workExperienceTableDataSource.data = [
-        ...this.workExperienceTableDataSource.data, newExperience];
-      this.expandedElement = newExperience;
-      this.announceChange();
-    }
+    const newExperience = {
+      jobTitle: '',
+      start: null,
+      end: null,
+      workExperienceDetails: '',
+      workExperienceFeedback: []
+    };
+    this.workExperienceTableDataSource.data = [
+      ...this.workExperienceTableDataSource.data, newExperience];
+    this.expandedElement = newExperience;
+    this.announceChange();
   }
 
   public onRemoveWorkExperienceClicked(index: number): void {

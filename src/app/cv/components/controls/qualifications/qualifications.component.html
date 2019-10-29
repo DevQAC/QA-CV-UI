@@ -1,10 +1,10 @@
-<table mat-table class="qa-table w-100" [dataSource]="qualisTableDataSource">
+<table mat-table class="qa-table outline w-100" [dataSource]="qualisTableDataSource">
 
         <!-- COLUMNS -->
         <ng-container matColumnDef="qualificationDetails">
             <th mat-header-cell *matHeaderCellDef>Qualification</th>
             <td mat-cell *matCellDef="let element">
-                <input matInput [ngModel]="element.qualificationDetails" placeholder="Qualification Details up to 80 characters"
+                <input matInput [ngModel]="element.qualificationDetails" placeholder="Qualification details"
                        maxlength="80"
                     (ngModelChange)="onQualificationDetailsInputChange(element, $event)" [readonly]="isDisabled">
             </td>

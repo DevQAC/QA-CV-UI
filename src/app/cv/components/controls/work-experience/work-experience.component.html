@@ -1,4 +1,4 @@
-<table mat-table class="qa-table w-100" [dataSource]="workExperienceTableDataSource" multiTemplateDataRows>
+<table mat-table class="qa-table outline w-100" [dataSource]="workExperienceTableDataSource" multiTemplateDataRows>
 
         <!-- COLUMNS -->
         <ng-container matColumnDef="title">
@@ -95,7 +95,7 @@
             [class.expanded]="expandedElement === element"
             (click)="expandedElement = expandedElement === element ? null : element">
         </tr>
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; let i = index;" class="expander-row"></tr>
+        <tr mat-row *matRowDef="let element; columns: ['expandedDetail']; let i = index;" class="expander-row" [class.expanded]="expandedElement === element"></tr>
         <tr mat-footer-row *matFooterRowDef="['addNew']"></tr>
       </table>
       

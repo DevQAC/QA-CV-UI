@@ -93,6 +93,6 @@
     </form>
 
 
-    <button mat-flat-button color="primary" class="submit-button" (click)="onGenerateCvButtonClicked()">
-        <mat-icon>open_in_new</mat-icon> Generate CV
+    <button mat-flat-button color="primary" class="submit-button w-100" (click)="onGenerateCvButtonClicked()" [disabled]="cvForm?.invalid">
+        <mat-icon>open_in_new</mat-icon>&nbsp;Generate CV
     </button>

@@ -1,5 +1,5 @@
 table.mat-table.qa-table {
-    
+
     &.loading {
         pointer-events: none;
         opacity: .5;
@@ -40,6 +40,7 @@ table.mat-table.qa-table {
     tr.mat-header-row {
         &.bulk-actions-row {
             background: map-get($map: $mat-light-theme-background, $key: 'app-bar');
+
             [bulk-action]:not(:first-of-type) {
                 margin-left: 1rem;
             }
@@ -55,5 +56,57 @@ table.mat-table.qa-table {
 
     .mat-progress-bar {
         position: absolute;
+    }
+}
+
+.qa-table.outline {
+
+    $border-style: 1px solid $dark-dividers;
+    $border-radius: 4px;
+
+    tbody tr {
+        td {
+            border-bottom: $border-style;
+
+            &:first-of-type {
+                border-left: $border-style;
+            }
+
+            &:last-of-type {
+                border-right: $border-style;
+            }
+        }
+
+        &:first-of-type td {
+            border-top: $border-style;
+
+            &:first-of-type {
+                border-top-left-radius: $border-radius;
+            }
+
+            &:last-of-type {
+                border-top-right-radius: $border-radius;
+            }
+        }
+
+        &:last-of-type td {
+            &:first-of-type {
+                border-bottom-left-radius: $border-radius;
+            }
+
+            &:last-of-type {
+                border-bottom-right-radius: $border-radius;
+            }
+        }
+    }
+
+    .mat-column-addNew {
+        border-bottom-style: none;
+    }
+
+    .expander-row:not(.expanded) {
+        td {
+            border-bottom-width: 0px;
+        }
     }
 }

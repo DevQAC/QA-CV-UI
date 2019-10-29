@@ -73,6 +73,9 @@ export class GenerateCvComponent implements OnInit {
 
   ngOnInit() {
     this.cvForm.patchValue(new CvModel());
+    this.cvForm.valueChanges.subscribe((v) => {
+      console.log(this.cvForm.valid, this.cvForm);
+    })
   }
 
   public removeSkill(category, value): void {
