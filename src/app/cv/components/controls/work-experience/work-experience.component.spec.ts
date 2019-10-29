@@ -4,6 +4,8 @@ import { WorkExperienceComponent } from './work-experience.component';
 import { MatTableModule, MatIconModule, MatInputModule, MatFormFieldModule, MatDatepickerModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { WorkExperienceModel } from 'src/app/cv/_common/models/cv.model';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('WorkExperienceComponent', () => {
   let component: WorkExperienceComponent;
@@ -14,11 +16,13 @@ describe('WorkExperienceComponent', () => {
       declarations: [WorkExperienceComponent],
       imports: [
         FormsModule,
+        NoopAnimationsModule,
         MatTableModule,
         MatIconModule,
         MatInputModule,
         MatFormFieldModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        MatMomentDateModule
       ]
     })
       .compileComponents();
@@ -32,6 +36,54 @@ describe('WorkExperienceComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should remove an experience and inform the formgroup when a user clicks the remove button', () => {
+    spyOn(component, 'onChange').and.callFake(x => { });
+    spyOn(component, 'onTouch').and.callFake(() => { });
+    component.workExperienceTableDataSource.data = [{
+      workExperienceDetails: 'example exp', workExperienceFeedback: [],
+      start: new Date(), end: new Date(), jobTitle: 'this experience should be removed'
+    }];
+    fixture.detectChanges();
+    const removeButton = fixture.debugElement.nativeElement.querySelector('button[name=remove-work-experience-button]');
+    removeButton.click();
+    fixture.detectChanges();
+    expect(component.onChange).toHaveBeenCalledTimes(1);
+    expect(component.onTouch).toHaveBeenCalledTimes(1);
+    expect(component.workExperienceTableDataSource.data).toEqual([]);
+  });
+
+  describe('new work experience button', () => {
+    let newWorkExpButton;
+
+    beforeEach(() => {
+      newWorkExpButton = fixture.debugElement.nativeElement.querySelector('button[name=new-work-experience-button]');
+    });
+
+    it('should add a new work experience when clicked', async () => {
+      spyOn(component, 'onNewWorkExperienceClick').and.callThrough();
+      expect(component.workExperienceTableDataSource.data.length).toEqual(0);
+      newWorkExpButton.click();
+      await fixture.whenStable();
+      expect(component.workExperienceTableDataSource.data.length).toEqual(1);
+    });
+    it('should inform the formGroup it has been changed, touched', async () => {
+      spyOn(component, 'onChange').and.callFake(v => { });
+      spyOn(component, 'onTouch').and.callFake(() => { });
+      newWorkExpButton.click();
+      await fixture.whenStable();
+      expect(component.onChange).toHaveBeenCalledTimes(1);
+      expect(component.onTouch).toHaveBeenCalledTimes(1);
+    });
+    it('should stop adding new work experience when 3 are added', () => {
+      expect(component.workExperienceTableDataSource.data.length).toEqual(0);
+      for (let i = 0; i < 10; i++) {
+        newWorkExpButton.click();
+        fixture.detectChanges();
+      }
+      expect(component.workExperienceTableDataSource.data.length).toEqual(3);
+    });
   });
 
   describe('ControlValueAccessor methods', () => {
