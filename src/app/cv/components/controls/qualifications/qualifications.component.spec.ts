@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QualificationsComponent } from './qualifications.component';
+import { MatTableModule, MatIconModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
 describe('QualificationsComponent', () => {
   let component: QualificationsComponent;
@@ -8,7 +10,12 @@ describe('QualificationsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QualificationsComponent ]
+      declarations: [ QualificationsComponent ],
+      imports: [
+        FormsModule,
+        MatTableModule,
+        MatIconModule
+      ]
     })
     .compileComponents();
   }));

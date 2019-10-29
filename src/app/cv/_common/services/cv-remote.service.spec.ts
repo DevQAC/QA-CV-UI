@@ -49,7 +49,7 @@ describe('CvRemoteService', () => {
     const testErrorBuffer = createTestArrayBuffer(testErrorString);
 
     service.getCvPdf({} as CvModel).subscribe(() => {
-      fail('This test should have errored and not gotten here');
+      fail('This function should have errored and not gotten here');
     }, err => {
       expect(new TextDecoder().decode(err.error)).toEqual(testErrorString);
     });
