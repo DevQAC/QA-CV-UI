@@ -1,98 +1,99 @@
-    <h1>Generate CV</h1>
+<h1>Generate CV</h1>
+
+<form [formGroup]="cvForm">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Name
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Surname</mat-label>
+                <input matInput formControlName="surname" required>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card formGroupName="profile">
+        <mat-card-header>
+            <mat-card-title>
+                Profile
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline" class="w-100">
+                <textarea matInput formControlName="profileDetails" required></textarea>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card formGroupName="skills">
+        <mat-card-header>
+            <mat-card-title>
+                Skills
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline" class="w-100" *ngFor="let cat of skillCategories">
+                <mat-label>{{cat.label}}</mat-label>
+                <mat-chip-list #chipList [attr.aria-label]="cat.label">
+                    <mat-chip *ngFor="let skill of cvForm.value.skills[cat.key]" [removable]="true"
+                        (removed)="removeSkill(cat.key, skill)">
+                        {{skill}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="add more..." [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+                        (matChipInputTokenEnd)="addSkill(cat.key, $event)">
+                </mat-chip-list>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
 
 
-    <form [formGroup]="cvForm">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>
-                    Name
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>First Name</mat-label>
-                    <input matInput formControlName="firstName" required>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Surname</mat-label>
-                    <input matInput formControlName="surname" required>
-                </mat-form-field>
-            </mat-card-content>
-        </mat-card>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Qualifications
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <app-qualifications class="w-100" formControlName="qualifications"></app-qualifications>
+        </mat-card-content>
+    </mat-card>
 
-        <mat-card formGroupName="profile">
-            <mat-card-header>
-                <mat-card-title>
-                    Profile
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-form-field appearance="outline" class="w-100">
-                    <textarea matInput formControlName="profileDetails" required></textarea>
-                </mat-form-field>
-            </mat-card-content>
-        </mat-card>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Work Experience
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <app-work-experience class="w-100" formControlName="workExperience"></app-work-experience>
+        </mat-card-content>
+    </mat-card>
 
-        <mat-card formGroupName="skills">
-            <mat-card-header>
-                <mat-card-title>
-                    Skills
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-form-field appearance="outline" class="w-100" *ngFor="let cat of skillCategories">
-                    <mat-label>{{cat.label}}</mat-label>
-                    <mat-chip-list #chipList [attr.aria-label]="cat.label">
-                        <mat-chip *ngFor="let skill of cvForm.value.skills[cat.key]" [removable]="true"
-                            (removed)="removeSkill(cat.key, skill)">
-                            {{skill}}
-                            <mat-icon matChipRemove>cancel</mat-icon>
-                        </mat-chip>
-                        <input placeholder="add more..." [matChipInputFor]="chipList"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
-                            (matChipInputTokenEnd)="addSkill(cat.key, $event)">
-                    </mat-chip-list>
-                </mat-form-field>
-            </mat-card-content>
-        </mat-card>
-
-        <mat-card formGroupName="hobbies">
-            <mat-card-header>
-                <mat-card-title>
-                    Hobbies
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-form-field appearance="outline" class="w-100">
-                    <textarea matInput formControlName="hobbiesDetails" required></textarea>
-                </mat-form-field>
-            </mat-card-content>
-        </mat-card>
-
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>
-                    Qualifications
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <app-qualifications class="w-100" formControlName="qualifications"></app-qualifications>
-            </mat-card-content>
-        </mat-card>
-
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>
-                    Work Experience
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <app-work-experience class="w-100" formControlName="workExperience"></app-work-experience>
-            </mat-card-content>
-        </mat-card>
-    </form>
+    <mat-card formGroupName="hobbies">
+        <mat-card-header>
+            <mat-card-title>
+                Hobbies
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline" class="w-100">
+                <textarea matInput formControlName="hobbiesDetails" required></textarea>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+</form>
 
 
-    <button mat-flat-button color="primary" class="submit-button w-100" (click)="onGenerateCvButtonClicked()" [disabled]="cvForm?.invalid">
-        <mat-icon>open_in_new</mat-icon>&nbsp;Generate CV
-    </button>
+<button mat-flat-button color="primary" class="submit-button w-100" (click)="onGenerateCvButtonClicked()"
+    [disabled]="cvForm?.invalid">
+    <mat-icon>open_in_new</mat-icon>&nbsp;Generate CV
+</button>

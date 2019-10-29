@@ -1,8 +1,7 @@
-import { Component, OnInit, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, NG_VALIDATORS, FormControl } from '@angular/forms';
+import { Component, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, NG_VALIDATORS } from '@angular/forms';
 import { QualificationModel } from 'src/app/cv/_common/models/cv.model';
 import { MatTableDataSource } from '@angular/material';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-qualifications',
@@ -17,8 +16,7 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
     provide: NG_VALIDATORS,
     useExisting: QualificationsComponent,
     multi: true
-  }
-  ]
+  }]
 })
 export class QualificationsComponent implements ControlValueAccessor {
   public qualisTableDataSource = new MatTableDataSource<QualificationModel>();
@@ -61,12 +59,12 @@ export class QualificationsComponent implements ControlValueAccessor {
     this.announceChange();
   }
 
-  //Validator
+  // Built-in validation
   validate({ value }: { value: QualificationModel[] }): null | any {
     if (Array.isArray(value)) {
-      return value.every(e => e.qualificationDetails) ? null : { qualificationEmpty: 'Qualifications must be populated!' };
+      return value.every(e => e.qualificationDetails) ? null : { qualificationIncomplete: 'All qualifications must be completed.' };
     } else {
-      return null
+      return null;
     }
   }
 

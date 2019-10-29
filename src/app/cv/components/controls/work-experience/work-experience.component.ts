@@ -1,5 +1,5 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, NG_VALIDATORS } from '@angular/forms';
 import { WorkExperienceModel } from 'src/app/cv/_common/models/cv.model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material';
@@ -14,7 +14,13 @@ import * as moment from 'moment';
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => WorkExperienceComponent),
     multi: true
-  }],
+  },
+  {
+    provide: NG_VALIDATORS,
+    useExisting: WorkExperienceComponent,
+    multi: true
+  }
+  ],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -77,6 +83,20 @@ export class WorkExperienceComponent implements ControlValueAccessor {
     }
   }
 
+  // Built-in validation
+  validate({ value }: { value: WorkExperienceModel[] }): null | any {
+    if (Array.isArray(value)) {
+      return value.every(e => (
+        e &&
+        e.workExperienceDetails &&
+        e.jobTitle &&
+        e.start &&
+        e.end
+      )) ? null : { workExperienceIncomplete: 'All work experiences must be completed.' };
+    } else {
+      return null;
+    }
+  }
 
   // ControlValueAccessor methods
   writeValue(obj: any): void {
