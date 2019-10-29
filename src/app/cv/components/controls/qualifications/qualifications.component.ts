@@ -24,9 +24,9 @@ export class QualificationsComponent implements ControlValueAccessor {
   public columns = [];
 
   // ControlValueAccessor members
-  public onChange: (v: QualificationModel[]) => {};
-  public onTouch: () => {};
   public isDisabled = false;
+  public onChange = (v: QualificationModel[]) => { };
+  public onTouch = () => { };
 
   constructor() {
     this.columns = ['qualificationDetails', 'remove'];
