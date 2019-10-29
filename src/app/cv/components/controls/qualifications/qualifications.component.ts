@@ -62,7 +62,7 @@ export class QualificationsComponent implements ControlValueAccessor {
   // Built-in validation
   validate({ value }: { value: QualificationModel[] }): null | any {
     if (Array.isArray(value)) {
-      return value.every(e => e.qualificationDetails) ? null : { qualificationIncomplete: 'All qualifications must be completed.' };
+      return value.every(e => !!e.qualificationDetails) ? null : { qualificationIncomplete: 'All qualifications must be completed.' };
     } else {
       return null;
     }

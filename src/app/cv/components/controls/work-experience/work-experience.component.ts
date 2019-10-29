@@ -86,7 +86,7 @@ export class WorkExperienceComponent implements ControlValueAccessor {
   // Built-in validation
   validate({ value }: { value: WorkExperienceModel[] }): null | any {
     if (Array.isArray(value)) {
-      return value.every(e => (
+      return value.every(e => !!(
         e &&
         e.workExperienceDetails &&
         e.jobTitle &&
