@@ -35,9 +35,9 @@ export class WorkExperienceComponent implements ControlValueAccessor {
   public expandedElement: WorkExperienceModel;
 
   // ControlValueAccessor methods
-  public onChange: (v: WorkExperienceModel[]) => {};
-  public onTouch: () => {};
   public isDisabled = false;
+  public onChange = (v: WorkExperienceModel[]) => {};
+  public onTouch = () => {};
 
   constructor() {
     this.columns = ['title', 'remove'];
@@ -70,7 +70,7 @@ export class WorkExperienceComponent implements ControlValueAccessor {
   }
 
   public getFormattedDateRange({ start, end }: WorkExperienceModel): string {
-    const dateFormat = 'MMM GGGG';
+    const dateFormat = 'MMM YYYY';
     const startMom = moment(start);
     const endMom = !!end ? moment(end) : null;
 

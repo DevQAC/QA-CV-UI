@@ -165,5 +165,6 @@ describe('QualificationsComponent', () => {
         ]
       })).not.toBeNull();
     });
+
   });
 });
