@@ -4,7 +4,7 @@ import { QualificationsComponent } from './qualifications.component';
 import { MatTableModule, MatIconModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
-fdescribe('QualificationsComponent', () => {
+describe('QualificationsComponent', () => {
   let component: QualificationsComponent;
   let fixture: ComponentFixture<QualificationsComponent>;
 
@@ -165,6 +165,5 @@ fdescribe('QualificationsComponent', () => {
         ]
       })).not.toBeNull();
     });
-
-  })
+  });
 });
