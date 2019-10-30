@@ -22,6 +22,7 @@ export class QualificationsComponent implements ControlValueAccessor {
   public qualisTableDataSource = new MatTableDataSource<QualificationModel>();
 
   public columns = [];
+  public rowValidState = [];
 
   // ControlValueAccessor members
   public isDisabled = false;
@@ -31,6 +32,7 @@ export class QualificationsComponent implements ControlValueAccessor {
   constructor() {
     this.columns = ['qualificationDetails', 'remove'];
   }
+
 
   onNewQualiClick(): void {
     this.qualisTableDataSource.data = [
@@ -62,7 +64,11 @@ export class QualificationsComponent implements ControlValueAccessor {
   // Built-in validation
   validate({ value }: { value: QualificationModel[] }): null | any {
     if (Array.isArray(value)) {
-      return value.every(e => !!e.qualificationDetails) ? null : { qualificationIncomplete: 'All qualifications must be completed.' };
+      return value.every((e, i) => {
+        const valid = !!e.qualificationDetails;
+        this.rowValidState[i] = valid;
+        return valid;
+      }) ? null : { qualificationIncomplete: 'All qualifications must be completed.' };
     } else {
       return null;
     }
