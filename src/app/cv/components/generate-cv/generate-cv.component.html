@@ -97,3 +97,7 @@
     [disabled]="cvForm?.invalid" name="generate-cv-button">
     <mat-icon>open_in_new</mat-icon>&nbsp;Generate CV
 </button>
+
+<div class="loading-overlay" *ngIf="isLoading">
+    <mat-spinner class="loading-spinner"></mat-spinner>
+</div>

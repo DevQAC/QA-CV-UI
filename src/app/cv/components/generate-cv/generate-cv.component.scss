@@ -5,3 +5,17 @@ mat-card {
 .submit-button {
     margin-bottom: 2rem;
 }
+
+
+.loading-overlay {
+    position: fixed;
+    top:0px;
+    left: 0px;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background: #00000022;
+    mat-spinner {
+        margin: auto;
+    }
+}

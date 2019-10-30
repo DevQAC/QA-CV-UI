@@ -16,6 +16,8 @@ export class GenerateCvComponent implements OnInit {
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
+  public isLoading = false;
+
   public skillCategories = [
     {
       label: 'Programming Languages',
@@ -96,6 +98,7 @@ export class GenerateCvComponent implements OnInit {
     const { skills, qualifications, workExperience, ...rest } = this.cvForm.value;
 
     this.cvForm.disable();
+    this.isLoading = true;
     this.cvService.displayCvPdf(
       _.merge(new CvModel(), {
         allSkills: [skills],
@@ -104,8 +107,11 @@ export class GenerateCvComponent implements OnInit {
         fullName: `${rest.firstName} ${rest.surname}`,
         ...rest
       } as CvModel)).pipe(
-        finalize(() => this.cvForm.enable())
-      ).subscribe(() => {});
+        finalize(() => {
+          this.cvForm.enable();
+          this.isLoading = false;
+        })
+      ).subscribe(() => { });
   }
 
 }
