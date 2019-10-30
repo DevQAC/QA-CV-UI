@@ -1,5 +1,9 @@
 # QaCvStandalone
 
+Standalone UI for the QA Portal CV API.
+
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
 
 ## Development server
