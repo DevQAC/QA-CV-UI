@@ -110,3 +110,25 @@ table.mat-table.qa-table {
         }
     }
 }
+
+*.ng-touched.ng-invalid[formcontrolname] .qa-table.outline {
+    tbody tr {
+        td {
+            border-left-color: mat-color($qa-cv-standalone-warn) !important;
+            border-left-width: 2px !important;
+
+            border-right-color: mat-color($qa-cv-standalone-warn) !important;
+            border-right-width: 2px !important;
+        }
+
+        &:first-of-type td {
+            border-top-color: mat-color($qa-cv-standalone-warn) !important;
+            border-top-width: 2px !important;
+        }
+
+        &:last-of-type td {
+            border-bottom-color: mat-color($qa-cv-standalone-warn) !important;
+            border-bottom-width: 2px !important;
+        }
+    }
+}

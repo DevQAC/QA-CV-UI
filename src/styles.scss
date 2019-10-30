@@ -40,15 +40,19 @@ body {
 
 .router-wrapper {
     margin: 0 1rem;
+
     @media screen and (min-width: 480px) {
         margin: 0 4rem;
     }
+
     @media screen and (min-width: 768px) {
         margin: 0 8rem;
     }
+
     @media screen and (min-width: 1280px) {
         margin: 0 12rem;
     }
+
     @media screen and (min-width: 1680px) {
         margin: 0 20rem;
     }

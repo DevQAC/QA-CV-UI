@@ -37,37 +37,20 @@ import { QualificationsComponent } from './components/controls/qualifications/qu
 import { WorkExperienceComponent } from './components/controls/work-experience/work-experience.component';
 
 const materialModules = [
-  MatCheckboxModule,
-  MatCheckboxModule,
   MatButtonModule,
   MatInputModule,
-  MatAutocompleteModule,
   MatDatepickerModule,
   MatFormFieldModule,
-  MatRadioModule,
-  MatSelectModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatMenuModule,
   MatSidenavModule,
   MatToolbarModule,
   MatListModule,
-  MatGridListModule,
   MatCardModule,
-  MatStepperModule,
-  MatTabsModule,
   MatExpansionModule,
-  MatButtonToggleModule,
   MatChipsModule,
   MatIconModule,
   MatProgressSpinnerModule,
-  MatProgressBarModule,
-  MatDialogModule,
   MatTooltipModule,
-  MatSnackBarModule,
   MatTableModule,
-  MatSortModule,
-  MatPaginatorModule,
   MatMomentDateModule
 ];
 
