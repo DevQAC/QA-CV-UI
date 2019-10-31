@@ -4,7 +4,7 @@ import { MockComponent } from 'ng-mocks';
 
 import { GenerateCvComponent } from './generate-cv.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatCardModule, MatInputModule, MatChipsModule, MatButtonModule, MatIconModule, MatChipInputEvent } from '@angular/material';
+import { MatCardModule, MatInputModule, MatChipsModule, MatButtonModule, MatIconModule, MatChipInputEvent, MatProgressSpinnerModule } from '@angular/material';
 import { QualificationsComponent } from '../controls/qualifications/qualifications.component';
 import { WorkExperienceComponent } from '../controls/work-experience/work-experience.component';
 import { CvService } from '../../_common/services/cv.service';
@@ -37,7 +37,8 @@ describe('GenerateCvComponent', () => {
         MatInputModule,
         MatChipsModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        MatProgressSpinnerModule
       ],
       providers: [
         { provide: CvService, useClass: MockCvService }

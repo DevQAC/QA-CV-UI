@@ -10,11 +10,11 @@
         <mat-card-content>
             <mat-form-field appearance="outline" class="w-100">
                 <mat-label>First Name</mat-label>
-                <input matInput formControlName="firstName" required>
+                <input matInput formControlName="firstName" name="first-name-input" required>
             </mat-form-field>
             <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Surname</mat-label>
-                <input matInput formControlName="surname" required>
+                <input matInput formControlName="surname" name="surname-input" required>
             </mat-form-field>
         </mat-card-content>
     </mat-card>
@@ -27,7 +27,8 @@
         </mat-card-header>
         <mat-card-content>
             <mat-form-field appearance="outline" class="w-100">
-                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" formControlName="profileDetails" required></textarea>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" formControlName="profileDetails"
+                    name="profile-input" required></textarea>
             </mat-form-field>
         </mat-card-content>
     </mat-card>
@@ -41,7 +42,7 @@
         <mat-card-content>
             <mat-form-field appearance="outline" class="w-100" *ngFor="let cat of skillCategories">
                 <mat-label>{{cat.label}}</mat-label>
-                <mat-chip-list #chipList [attr.aria-label]="cat.label">
+                <mat-chip-list #chipList [attr.aria-label]="cat.label" [attr.name]="cat.key+'-chip-list'">
                     <mat-chip *ngFor="let skill of cvForm.value.skills[cat.key]" [removable]="true"
                         (removed)="removeSkill(cat.key, skill)">
                         {{skill}}
@@ -49,7 +50,7 @@
                     </mat-chip>
                     <input placeholder="add more..." [matChipInputFor]="chipList"
                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
-                        (matChipInputTokenEnd)="addSkill(cat.key, $event)">
+                        (matChipInputTokenEnd)="addSkill(cat.key, $event)" [name]="cat.key+'-skill-input'">
                 </mat-chip-list>
             </mat-form-field>
         </mat-card-content>
@@ -86,7 +87,8 @@
         </mat-card-header>
         <mat-card-content>
             <mat-form-field appearance="outline" class="w-100">
-                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" formControlName="hobbiesDetails" required></textarea>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" formControlName="hobbiesDetails"
+                    name="hobbies-input" required></textarea>
             </mat-form-field>
         </mat-card-content>
     </mat-card>
