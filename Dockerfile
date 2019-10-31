@@ -5,7 +5,7 @@ WORKDIR /build
 COPY . .
 RUN NG_CLI_ANALYTICS=ci npm install
 RUN ng v
-RUN ng test --browsers ChromeHeadless
+RUN ng test --browsers=ChromeHeadless --watch=false
 RUN ng build --prod --configuration=production
 
 FROM nginx:alpine
