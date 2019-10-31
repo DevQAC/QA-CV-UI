@@ -7,7 +7,7 @@ RUN NG_CLI_ANALYTICS=ci npm install
 RUN ng v
 RUN apt update
 RUN apt install -y chromium
-RUN ng test --browsers=ChromeHeadless --watch=false
+RUN ng test --browsers=ChromiumHeadless --watch=false
 RUN ng build --prod --configuration=production
 
 FROM nginx:alpine
