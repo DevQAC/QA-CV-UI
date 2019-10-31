@@ -45,6 +45,6 @@ export class AppPage {
   }
 
   randomString(length = 64) {
-    return [...Array(length)].map(i => (~~(Math.random() * 72)).toString(72)).join('');
+    return [...Array(length)].map(i => (~~(Math.random() * 36)).toString(36)).join('');
   }
 }
