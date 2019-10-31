@@ -1,5 +1,6 @@
 FROM node:10 as build
-RUN NG_CLI_ANALYTICS=ci npm install -g @angular/cli
+ARG ANGULAR_CLI_VERSION=8.0.6
+RUN NG_CLI_ANALYTICS=ci npm install -g @angular/cli@${ANGULAR_CLI_VERSION}
 WORKDIR /build
 COPY . .
 RUN NG_CLI_ANALYTICS=ci npm install
