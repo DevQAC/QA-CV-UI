@@ -1,6 +1,5 @@
 import { AppPage } from './po/app.po';
-import { browser, logging, by } from 'protractor';
-import { protractor } from 'protractor/built/ptor';
+import { browser, logging } from 'protractor';
 
 describe('App', () => {
   let page: AppPage;
@@ -9,24 +8,9 @@ describe('App', () => {
     page = new AppPage();
   });
 
-  it('should enter data into all fields', async () => {
+  it('should load the page', () => {
     page.navigateTo();
-    page.getProfileInputElement().sendKeys(page.randomString(256));
-    // page.getProgrammingLanguagesInputElement().sendKeys(page.randomString(12), protractor.Key.ENTER, page.randomString(12), protractor.Key.ENTER);
-    // page.getIDEsInputElement().sendKeys(page.randomString(12), protractor.Key.ENTER, page.randomString(12), protractor.Key.ENTER);
-    // page.getOperatingSystemsInputElement().sendKeys(page.randomString(12), protractor.Key.ENTER, page.randomString(12), protractor.Key.ENTER);
-    // page.getDevopsInputElement().sendKeys(page.randomString(12), protractor.Key.ENTER, page.randomString(12), protractor.Key.ENTER);
-    // page.getDatabasesInputElement().sendKeys(page.randomString(12), protractor.Key.ENTER, page.randomString(12), protractor.Key.ENTER);
-    // page.getPlatformsInputElement().sendKeys(page.randomString(12), protractor.Key.ENTER, page.randomString(12), protractor.Key.ENTER);
-    // page.getOtherInputElement().sendKeys(page.randomString(12), protractor.Key.ENTER, page.randomString(12), protractor.Key.ENTER);
-    page.getNewQualificationButtonElement().click();
-    page.getNewQualificationButtonElement().click();
-    page.getNewQualificationButtonElement().click();
-    browser.waitForAngular();
-
-
-
-    // browser.sleep(0);
+    expect(page.getTitleText()).toEqual('Generate CV');
   });
 
 
