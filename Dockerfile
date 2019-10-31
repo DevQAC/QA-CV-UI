@@ -1,10 +1,14 @@
 FROM node:10 as build
 ARG ANGULAR_CLI_VERSION=8.0.6
 RUN NG_CLI_ANALYTICS=ci npm install -g @angular/cli@${ANGULAR_CLI_VERSION}
-WORKDIR /build
-COPY . .
-RUN NG_CLI_ANALYTICS=ci npm install
 RUN ng v
+RUN apt update
+RUN apt install -y chromium
+
+WORKDIR /build
+COPY package.json .
+RUN NG_CLI_ANALYTICS=ci npm install
+COPY . .
 RUN ng test --browsers=ChromiumCI --watch=false
 RUN ng build --prod --configuration=production
 
