@@ -4,6 +4,7 @@ RUN NG_CLI_ANALYTICS=ci npm install -g @angular/cli@${ANGULAR_CLI_VERSION}
 WORKDIR /build
 COPY . .
 RUN NG_CLI_ANALYTICS=ci npm install
+RUN ng v
 RUN ng test --browsers ChromeHeadless
 RUN ng build --prod --configuration=production
 
