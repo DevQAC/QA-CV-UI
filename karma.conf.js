@@ -19,7 +19,16 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, './coverage/qa-cv-standalone'),
       reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        emitWarning: false,
+        global: {
+          statements: 90,
+          lines: 90,
+          branches: 90,
+          functions: 90
+        },
+      }
     },
     reporters: ['kjhtml', 'mocha' /*, 'progress'*/],
     port: 9876,
