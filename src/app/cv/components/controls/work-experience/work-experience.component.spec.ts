@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { WorkExperienceComponent } from './work-experience.component';
 import { MatTableModule, MatIconModule, MatInputModule, MatFormFieldModule, MatDatepickerModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
-import { WorkExperienceModel } from 'src/app/cv/_common/models/cv.model';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -42,8 +41,7 @@ describe('WorkExperienceComponent', () => {
     spyOn(component, 'onChange').and.callFake(x => { });
     spyOn(component, 'onTouch').and.callFake(() => { });
     component.workExperienceTableDataSource.data = [{
-      workExperienceDetails: 'example exp', workExperienceFeedback: [],
-      start: new Date(), end: new Date(), jobTitle: 'this experience should be removed'
+      workExperienceDetails: 'example exp', workExperienceFeedback: [], jobTitle: 'this experience should be removed'
     }];
     fixture.detectChanges();
     const removeButton = fixture.debugElement.nativeElement.querySelector('button[name=remove-work-experience-button]');
@@ -124,8 +122,7 @@ describe('WorkExperienceComponent', () => {
     it('should return null if value of control is one populated qualification', () => {
       expect(component.validate({
         value: [{
-          workExperienceDetails: 'example exp', workExperienceFeedback: [],
-          start: new Date(), end: new Date(), jobTitle: 'example exp'
+          workExperienceDetails: 'example exp', workExperienceFeedback: [], jobTitle: 'example exp'
         }]
       })).toBeNull();
     });
@@ -133,17 +130,13 @@ describe('WorkExperienceComponent', () => {
       expect(component.validate({
         value: [
           {
-            workExperienceDetails: 'example exp', workExperienceFeedback: [],
-            start: new Date(), end: new Date(), jobTitle: 'example exp'
+            workExperienceDetails: 'example exp', workExperienceFeedback: [], jobTitle: 'example exp'
           }, {
-            workExperienceDetails: 'example exp', workExperienceFeedback: [],
-            start: new Date(), end: new Date(), jobTitle: 'example exp'
+            workExperienceDetails: 'example exp', workExperienceFeedback: [], jobTitle: 'example exp'
           }, {
-            workExperienceDetails: 'example exp', workExperienceFeedback: [],
-            start: new Date(), end: new Date(), jobTitle: 'example exp'
+            workExperienceDetails: 'example exp', workExperienceFeedback: [], jobTitle: 'example exp'
           }, {
-            workExperienceDetails: 'example exp', workExperienceFeedback: [],
-            start: new Date(), end: new Date(), jobTitle: 'example exp'
+            workExperienceDetails: 'example exp', workExperienceFeedback: [], jobTitle: 'example exp'
           }
         ]
       })).toBeNull();
@@ -153,40 +146,14 @@ describe('WorkExperienceComponent', () => {
     it('should return error if value of control is one unpopulated qualification', () => {
       expect(component.validate({
         value: [{
-          workExperienceDetails: '', workExperienceFeedback: [],
-          start: null, end: null, jobTitle: ''
+          workExperienceDetails: '', workExperienceFeedback: [], jobTitle: ''
         }]
       })).not.toBeNull();
     });
     it('should return error if value of control is one qualification with no job title', () => {
       expect(component.validate({
         value: [{
-          workExperienceDetails: 'example exp', workExperienceFeedback: [],
-          start: new Date(), end: new Date(), jobTitle: ''
-        }]
-      })).not.toBeNull();
-    });
-    it('should return error if value of control is one qualification with no start date', () => {
-      expect(component.validate({
-        value: [{
-          workExperienceDetails: 'example exp', workExperienceFeedback: [],
-          start: null, end: new Date(), jobTitle: ''
-        }]
-      })).not.toBeNull();
-    });
-    it('should return error if value of control is one qualification with no end date', () => {
-      expect(component.validate({
-        value: [{
-          workExperienceDetails: 'example exp', workExperienceFeedback: [],
-          start: new Date(), end: null, jobTitle: ''
-        }]
-      })).not.toBeNull();
-    });
-    it('should return error if value of control is one qualification with no experience details', () => {
-      expect(component.validate({
-        value: [{
-          workExperienceDetails: '', workExperienceFeedback: [],
-          start: new Date(), end: new Date(), jobTitle: ''
+          workExperienceDetails: 'example exp', workExperienceFeedback: [], jobTitle: ''
         }]
       })).not.toBeNull();
     });
@@ -194,11 +161,9 @@ describe('WorkExperienceComponent', () => {
       expect(component.validate({
         value: [
           {
-            workExperienceDetails: '', workExperienceFeedback: [],
-            start: null, end: null, jobTitle: ''
+            workExperienceDetails: '', workExperienceFeedback: [], jobTitle: ''
           }, {
-            workExperienceDetails: '', workExperienceFeedback: [],
-            start: null, end: null, jobTitle: ''
+            workExperienceDetails: '', workExperienceFeedback: [], jobTitle: ''
           }
         ]
       })).not.toBeNull();
@@ -207,34 +172,16 @@ describe('WorkExperienceComponent', () => {
       expect(component.validate({
         value: [
           {
-            workExperienceDetails: 'example exp', workExperienceFeedback: [],
-            start: new Date(), end: new Date(), jobTitle: 'example exp'
+            workExperienceDetails: 'example exp', workExperienceFeedback: [], jobTitle: 'example exp'
           }, {
-            workExperienceDetails: '', workExperienceFeedback: [],
-            start: null, end: null, jobTitle: ''
+            workExperienceDetails: '', workExperienceFeedback: [], jobTitle: ''
           }, {
-            workExperienceDetails: 'example exp', workExperienceFeedback: [],
-            start: new Date(), end: new Date(), jobTitle: 'example exp'
+            workExperienceDetails: 'example exp', workExperienceFeedback: [], jobTitle: 'example exp'
           }, {
-            workExperienceDetails: 'example exp', workExperienceFeedback: [],
-            start: new Date(), end: new Date(), jobTitle: 'example exp'
+            workExperienceDetails: 'example exp', workExperienceFeedback: [], jobTitle: 'example exp'
           }
         ]
       })).not.toBeNull();
-    });
-  });
-
-  describe('getFormattedDateRange', () => {
-    it('should return "" if no dates provided', () => {
-      expect(component.getFormattedDateRange({ start: null, end: null } as WorkExperienceModel)).toEqual('');
-    });
-    it('should return "<START> - Present" if only start date provided', () => {
-      expect(component.getFormattedDateRange({ start: new Date('2010-01-01'), end: null } as WorkExperienceModel))
-        .toEqual('Jan 2010 - Present');
-    });
-    it('should return "<START> - <END>" if two dates provided', () => {
-      expect(component.getFormattedDateRange({ start: new Date('2010-01-01'), end: new Date('2015-10-01') } as WorkExperienceModel))
-        .toEqual('Jan 2010 - Oct 2015');
     });
   });
 });
