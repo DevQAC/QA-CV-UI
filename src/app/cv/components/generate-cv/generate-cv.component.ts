@@ -14,7 +14,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class GenerateCvComponent implements OnInit {
 
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  readonly separatorKeysCodes: number[] = [ENTER];
 
   public isLoading = false;
 
@@ -40,7 +40,7 @@ export class GenerateCvComponent implements OnInit {
       key: 'databases'
     },
     {
-      label: 'Platforms',
+      label: 'Cloud Platforms',
       key: 'platforms'
     },
     {
