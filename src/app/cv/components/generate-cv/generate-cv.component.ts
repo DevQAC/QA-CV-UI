@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CvModel } from '../../_common/models/cv.model';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { ENTER } from '@angular/cdk/keycodes';
 import * as _ from 'lodash';
 import { MatChipInputEvent } from '@angular/material';
 import { CvService } from '../../_common/services/cv.service';

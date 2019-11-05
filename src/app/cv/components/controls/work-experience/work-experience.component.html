@@ -6,7 +6,6 @@
         <td mat-cell *matCellDef="let element">
             <div class="job-title-container">
                 <div class="job-title-text">{{element?.jobTitle || 'Click to expand'}}</div>
-                <div class="date-range-text">{{getFormattedDateRange(element)}}</div>
             </div>
         </td>
     </ng-container>
@@ -42,24 +41,6 @@
                         <mat-label>Job Title</mat-label>
                         <input matInput [ngModel]="element.jobTitle"
                             (ngModelChange)="element.jobTitle = $event; announceChange();" [readonly]="isDisabled">
-                    </mat-form-field>
-                </div>
-
-                <div class="date-range-container">
-                    <mat-form-field class="date-left" appearance="outline">
-                        <mat-label>Start</mat-label>
-                        <input matInput [matDatepicker]="picker1" [ngModel]="element.start"
-                            (ngModelChange)="element.start = $event; announceChange();" [readonly]="isDisabled">
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1></mat-datepicker>
-                    </mat-form-field>
-
-                    <mat-form-field class="date-right" appearance="outline">
-                        <mat-label>End</mat-label>
-                        <input matInput [matDatepicker]="picker2" [ngModel]="element.end"
-                            (ngModelChange)="element.end = $event; announceChange();" [readonly]="isDisabled">
-                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                        <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>
                 </div>
 

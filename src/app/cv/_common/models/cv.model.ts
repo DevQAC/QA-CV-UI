@@ -20,8 +20,6 @@ export class QualificationModel {
 
 export class WorkExperienceModel {
     jobTitle: string;
-    start: Date;
-    end: Date;
     workExperienceDetails: string;
     workExperienceFeedback = [];
 }

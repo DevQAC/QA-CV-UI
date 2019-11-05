@@ -69,29 +69,13 @@ export class WorkExperienceComponent implements ControlValueAccessor {
     this.onTouch();
   }
 
-  public getFormattedDateRange({ start, end }: WorkExperienceModel): string {
-    const dateFormat = 'MMM YYYY';
-    const startMom = moment(start);
-    const endMom = !!end ? moment(end) : null;
-
-    if (startMom.isValid() || (!!endMom && endMom.isValid())) {
-      const formattedStart = startMom.format(dateFormat);
-      const formattedEnd = !!endMom ? endMom.format(dateFormat) : 'Present';
-      return formattedStart + ' - ' + formattedEnd;
-    } else {
-      return '';
-    }
-  }
-
   // Built-in validation
   validate({ value }: { value: WorkExperienceModel[] }): null | any {
     if (Array.isArray(value)) {
       return value.every(e => !!(
         e &&
         e.workExperienceDetails &&
-        e.jobTitle &&
-        e.start &&
-        e.end
+        e.jobTitle
       )) ? null : { workExperienceIncomplete: 'All work experiences must be completed.' };
     } else {
       return null;
