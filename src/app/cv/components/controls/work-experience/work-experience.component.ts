@@ -46,8 +46,6 @@ export class WorkExperienceComponent implements ControlValueAccessor {
   onNewWorkExperienceClick(): void {
     const newExperience = {
       jobTitle: '',
-      start: null,
-      end: null,
       workExperienceDetails: '',
       workExperienceFeedback: []
     };
