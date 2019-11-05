@@ -17,6 +17,10 @@ export class AppPage {
     return element(by.name('surname-input'));
   }
 
+  getSourceControlLinkInputElement() {
+    return element(by.name('source-control-link-input'));
+  }
+
   getProfileInputElement() {
     return element(by.name('profile-input'));
   }

@@ -4,7 +4,7 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>
-                Name
+                About
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
@@ -15,6 +15,10 @@
             <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Surname</mat-label>
                 <input matInput formControlName="surname" name="surname-input" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Source Control Link - (GitHub, GitLab, BitBucket, etc. URL)</mat-label>
+                <input matInput formControlName="sourceControlLink" name="source-control-link-input">
             </mat-form-field>
         </mat-card-content>
     </mat-card>
@@ -71,11 +75,22 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>
-                Work Experience
+                Work Experience - QA
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <app-work-experience class="w-100" formControlName="workExperience"></app-work-experience>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Work Experience - Other
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <app-work-experience class="w-100" formControlName="otherWorkExperience"></app-work-experience>
         </mat-card-content>
     </mat-card>
 

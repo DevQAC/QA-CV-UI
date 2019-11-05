@@ -1,7 +1,7 @@
 import { AppPage } from './po/app.po';
 import { browser, logging, ElementFinder } from 'protractor';
 
-describe('Name', () => {
+describe('About', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -44,6 +44,25 @@ describe('Name', () => {
       expect(surnameInputElement.getAttribute('value')).toEqual('');
       surnameInputElement.sendKeys(inputString);
       expect(surnameInputElement.getAttribute('value')).toEqual(inputString);
+    });
+  });
+
+  describe('Source Control Link input', () => {
+    let sourceControlLinkInputElement: ElementFinder;
+
+    beforeEach(() => {
+      sourceControlLinkInputElement = page.getSourceControlLinkInputElement();
+    });
+
+    it('should appear on the page', () => {
+      expect(sourceControlLinkInputElement.isPresent()).toBeTruthy();
+    });
+
+    it('should allow user input', () => {
+      const inputString = page.randomString(64);
+      expect(sourceControlLinkInputElement.getAttribute('value')).toEqual('');
+      sourceControlLinkInputElement.sendKeys(inputString);
+      expect(sourceControlLinkInputElement.getAttribute('value')).toEqual(inputString);
     });
   });
 

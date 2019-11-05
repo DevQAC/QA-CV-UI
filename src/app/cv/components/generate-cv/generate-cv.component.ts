@@ -70,7 +70,9 @@ export class GenerateCvComponent implements OnInit {
       }),
       hobbies: fb.group({ hobbiesDetails: ['', [Validators.required, Validators.maxLength(750)]] }),
       qualifications: [[]],
-      workExperience: [[]]
+      workExperience: [[]],
+      otherWorkExperience: [[]],
+      sourceControlLink: ['']
     });
   }
 
@@ -113,5 +115,4 @@ export class GenerateCvComponent implements OnInit {
         })
       ).subscribe(() => { });
   }
-
 }

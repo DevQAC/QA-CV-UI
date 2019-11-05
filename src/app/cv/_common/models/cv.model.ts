@@ -43,4 +43,5 @@ export class CvModel {
     surname: string;
     fullName: string;
     cohort: string;
+    sourceControlLink: string;
 }
