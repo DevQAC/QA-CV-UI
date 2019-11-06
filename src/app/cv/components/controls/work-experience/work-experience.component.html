@@ -49,8 +49,8 @@
                         <mat-label>Description</mat-label>
                         <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
                             cdkAutosizeMaxRows="5" [ngModel]="element.workExperienceDetails"
-                            (ngModelChange)="element.workExperienceDetails = $event; announceChange();" maxlength="400"
-                            placeholder="Details of work experience up to maximum of 400 characters"
+                            (ngModelChange)="element.workExperienceDetails = $event; announceChange();" maxlength="1000"
+                            placeholder="Details of work experience up to maximum of 1000 characters"
                             [readonly]="isDisabled"></textarea>
                     </mat-form-field>
                 </div>
