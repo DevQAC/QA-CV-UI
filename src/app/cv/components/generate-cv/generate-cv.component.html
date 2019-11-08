@@ -31,6 +31,7 @@
         </mat-card-header>
         <mat-card-content>
             <mat-form-field appearance="outline" class="w-100">
+                <mat-label>&nbsp;</mat-label>
                 <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" formControlName="profileDetails"
                     name="profile-input" required></textarea>
             </mat-form-field>
@@ -102,6 +103,7 @@
         </mat-card-header>
         <mat-card-content>
             <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>&nbsp;</mat-label>
                 <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" formControlName="hobbiesDetails"
                     name="hobbies-input" required></textarea>
             </mat-form-field>
@@ -110,10 +112,17 @@
 </form>
 
 
-<button mat-flat-button color="primary" class="submit-button w-100" (click)="onGenerateCvButtonClicked()"
-    [disabled]="cvForm?.invalid" name="generate-cv-button">
-    <mat-icon>open_in_new</mat-icon>&nbsp;Generate CV
-</button>
+<div class="action-buttons">
+    <button mat-flat-button color="accent" class="submit-button w-100" (click)="onGenerateCvButtonClicked()"
+        [disabled]="cvForm?.invalid" name="generate-cv-button">
+        <mat-icon>open_in_new</mat-icon>&nbsp;Preview CV
+    </button>
+    <button mat-flat-button color="primary" class="submit-button w-100" (click)="onDownloadCvButtonClicked()"
+        [disabled]="cvForm?.invalid" name="download-cv-button">
+        <mat-icon>get_app</mat-icon>&nbsp;Download CV
+    </button>
+
+</div>
 
 <div class="loading-overlay" *ngIf="isLoading">
     <mat-spinner class="loading-spinner"></mat-spinner>
