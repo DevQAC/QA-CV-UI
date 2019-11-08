@@ -25,6 +25,7 @@ export class CvService {
 
       // IE doesn't allow using a blob object directly as link href
       // instead it is necessary to use msSaveOrOpenBlob
+      /* istanbul ignore next */
       if (window.navigator && window.navigator.msSaveOrOpenBlob) {
         window.navigator.msSaveOrOpenBlob(pdf);
       }

@@ -57,5 +57,32 @@ describe('CvService', () => {
     });
   });
 
+  describe('downloadCvPdf', () => {
+    it('should fetch and download a PDF', async () => {
 
+      const testEl = {
+        download: '',
+        href: '',
+        click: () => {
+          expect(testEl.download).toBeTruthy();
+          expect(testEl.href).toBeTruthy();
+        }
+      }
+
+      spyOn(document, 'createElement').and.callFake((el: any) => {
+        return (testEl as unknown) as HTMLElement;
+      });
+
+      spyOn(testEl, 'click').and.callThrough();
+
+      const testCv = {
+        firstName: 'test',
+        surname: 'user'
+      } as CvModel;
+
+      const result = await service.downloadCvPdf(testCv).toPromise();
+      expect(result).toEqual(true);
+      expect(testEl.click).toHaveBeenCalledTimes(1);
+    });
+  });
 });
