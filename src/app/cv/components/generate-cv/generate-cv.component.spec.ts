@@ -113,7 +113,7 @@ describe('GenerateCvComponent', () => {
       expect(cv.profile.profileDetails).toEqual(inputForm.profile.profileDetails);
       expect({...cv.allSkills[0]}).toEqual(inputForm.skills);
       expect(cv.hobbies.hobbiesDetails).toEqual(inputForm.hobbies.hobbiesDetails);
-      expect(cv.allQualifictions.every((q, i) => q.qualificationDetails === inputForm.qualifications[i].qualifictionDetails)).toBeTruthy();
+      expect(cv.allQualifications.every((q, i) => q.qualificationDetails === inputForm.qualifications[i].qualifictionDetails)).toBeTruthy();
       expect(cv.allWorkExperience.every(
         (q, i) => q.workExperienceDetails === inputForm.workExperience[i].workExperienceDetails)).toBeTruthy();
       return of(true);

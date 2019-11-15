@@ -33,7 +33,7 @@ export class CvModel {
     versionNumber = 1;
     profile: ProfileModel = new ProfileModel();
     allSkills: SkillsModel[] = [new SkillsModel()];
-    allQualifictions: QualificationModel[] = [];
+    allQualifications: QualificationModel[] = [];
     allWorkExperience: WorkExperienceModel[] = [];
     hobbies: HobbiesModel = new HobbiesModel();
     id: 'standalone';
