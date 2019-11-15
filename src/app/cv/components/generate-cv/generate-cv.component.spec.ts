@@ -85,7 +85,7 @@ describe('GenerateCvComponent', () => {
     expect(component.cvForm.value.skills.other).toEqual(['another skill']);
   });
 
-  fit('should generate a CV based on form values', () => {
+  it('should generate a CV based on form values', () => {
     const inputForm = {
       firstName: 'Joe',
       surname: 'Bloggs',
