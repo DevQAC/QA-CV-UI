@@ -85,7 +85,7 @@ describe('GenerateCvComponent', () => {
     expect(component.cvForm.value.skills.other).toEqual(['another skill']);
   });
 
-  it('should generate a CV based on form values', () => {
+  fit('should generate a CV based on form values', () => {
     const inputForm = {
       firstName: 'Joe',
       surname: 'Bloggs',
@@ -100,8 +100,12 @@ describe('GenerateCvComponent', () => {
         other: ['other skill']
       },
       hobbies: { hobbiesDetails: 'Example hobbies details' },
-      qualifications: [{ qualifictionDetails: 'Example qualification' }],
+      qualifications: [{ qualificationDetails: 'Example qualification' }],
       workExperience: [{
+        workExperienceDetails: 'Example work experience', workExperienceFeedback: [],
+        start: new Date('2015-01-01'), end: new Date('2010-01-01'), jobTitle: 'Example job title'
+      }],
+      otherWorkExperience: [{
         workExperienceDetails: 'Example work experience', workExperienceFeedback: [],
         start: new Date('2015-01-01'), end: new Date('2010-01-01'), jobTitle: 'Example job title'
       }]
@@ -111,11 +115,14 @@ describe('GenerateCvComponent', () => {
       expect(cv.firstName).toEqual(inputForm.firstName);
       expect(cv.surname).toEqual(inputForm.surname);
       expect(cv.profile.profileDetails).toEqual(inputForm.profile.profileDetails);
-      expect({...cv.allSkills[0]}).toEqual(inputForm.skills);
+      expect({ ...cv.allSkills[0] }).toEqual(inputForm.skills);
       expect(cv.hobbies.hobbiesDetails).toEqual(inputForm.hobbies.hobbiesDetails);
-      expect(cv.allQualifications.every((q, i) => q.qualificationDetails === inputForm.qualifications[i].qualifictionDetails)).toBeTruthy();
+      expect(cv.allQualifications.every(
+        (q, i) => q.qualificationDetails === inputForm.qualifications[i].qualificationDetails)).toBeTruthy();
       expect(cv.allWorkExperience.every(
         (q, i) => q.workExperienceDetails === inputForm.workExperience[i].workExperienceDetails)).toBeTruthy();
+        expect(cv.otherWorkExperience.every(
+          (q, i) => q.workExperienceDetails === inputForm.otherWorkExperience[i].workExperienceDetails)).toBeTruthy();
       return of(true);
     });
 

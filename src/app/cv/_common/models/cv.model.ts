@@ -35,6 +35,7 @@ export class CvModel {
     allSkills: SkillsModel[] = [new SkillsModel()];
     allQualifications: QualificationModel[] = [];
     allWorkExperience: WorkExperienceModel[] = [];
+    otherWorkExperience: WorkExperienceModel[] = [];
     hobbies: HobbiesModel = new HobbiesModel();
     id: 'standalone';
     status: string;
