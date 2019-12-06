@@ -35,7 +35,7 @@ export class CvService {
       const data = window.URL.createObjectURL(pdf);
       const link = document.createElement('a');
       link.href = data;
-      link.download = `${cv.firstName.toLocaleLowerCase()}_${cv.surname.toLocaleLowerCase()}_CV_${mom().format('YYYY-MM-DD')}.pdf`;
+      link.download = `QA_${cv.firstName}_${cv.surname}_CV.pdf`;
       link.click();
       setTimeout(() => {
         // For Firefox it is necessary to delay revoking the ObjectURL

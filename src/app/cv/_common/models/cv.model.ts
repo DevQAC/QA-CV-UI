@@ -45,4 +45,25 @@ export class CvModel {
     fullName: string;
     cohort: string;
     sourceControlLink: string;
+
+
+    /**
+     * Sanitizes an input string by removing invalid characters.
+     */
+    private sanitizeStr(str: string): string {
+        return str.replace(/\t/g, '');
+    }
+
+    public build(): this {
+        this.profile.profileDetails = this.sanitizeStr(this.profile.profileDetails);
+        this.hobbies.hobbiesDetails = this.sanitizeStr(this.hobbies.hobbiesDetails);
+        this.allWorkExperience.map(wE => ({ ...wE, workExperienceDetails: this.sanitizeStr(wE.workExperienceDetails) }));
+        this.otherWorkExperience.map(wE => ({ ...wE, workExperienceDetails: this.sanitizeStr(wE.workExperienceDetails) }));
+        this.allQualifications.map(quali => ({ ...quali, qualificationDetails: this.sanitizeStr(quali.qualificationDetails) }));
+        this.sourceControlLink = this.sanitizeStr(this.sourceControlLink);
+        this.firstName = this.sanitizeStr(this.firstName);
+        this.surname = this.sanitizeStr(this.surname);
+
+        return this;
+    }
 }

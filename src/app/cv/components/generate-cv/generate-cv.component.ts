@@ -116,19 +116,20 @@ export class GenerateCvComponent implements OnInit {
       ).subscribe(() => { });
   }
 
+
   onDownloadCvButtonClicked() {
     const { skills, qualifications, workExperience, ...rest } = this.cvForm.value;
 
     this.cvForm.disable();
     this.isLoading = true;
     this.cvService.downloadCvPdf(
-      _.merge(new CvModel(), {
+      (_.merge(new CvModel(), {
         allSkills: [skills],
         allQualifications: qualifications,
         allWorkExperience: workExperience,
         fullName: `${rest.firstName} ${rest.surname}`,
         ...rest
-      } as CvModel)).pipe(
+      }) as CvModel).build()).pipe(
         finalize(() => {
           this.cvForm.enable();
           this.isLoading = false;
